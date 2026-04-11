@@ -4,5 +4,5 @@ A pasta MySqldb contém o script de CREATE TABLE para o MySql e terá também um
 
 A pasta Sys-BackEnd contém o projeto para rodar o back-end com Java Quarkus, mais informações se encontram no README.md dessa pasta.
 
-A pasta Sys-FrontEnd contém o projeto para rodar o front-end com React, mais inforamções se encontram no README.md dessa pasta.
+A pasta Sys-FrontEnd contém o projeto para rodar o front-end com React, mais informações se encontram no README.md dessa pasta.
 
