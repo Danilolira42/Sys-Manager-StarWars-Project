@@ -1,0 +1,8 @@
+
+
+.btn-styles:hover {
+    background-color: rgb(10, 10, 10);
+}
+.btn-styles:focus{
+    border: 2px solid white;
+}

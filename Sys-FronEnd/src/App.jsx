@@ -1,12 +1,15 @@
+import "../global-css/global.css"
+import { Home } from "./components/Home/Home"
 
 function App() {
-
   return (
-    <div><p style={{
-        color: "black"
-      }}>Funcionando...</p>
+    <div style={{
+      backgroundColor: "var(--bg-color)",
+      color: "var(--color-text)",
+    }}>
+      <Home />
     </div>
-  )
+  );
 }
 
-export default App
+export { App };

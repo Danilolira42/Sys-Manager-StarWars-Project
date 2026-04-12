@@ -1,0 +1,19 @@
+:root {
+  --br: 8px;
+  --bg-color: rgba(27, 26, 26, 0.979);
+  --bg-card: rgb(255, 255, 255);
+  --color-text: rgb(53, 53, 53);
+  --br-inputs: 4px;
+  --br-buttons: 4px;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+  width: 100%;
+  height: 100vh;
+  font-family: "Roboto Mono", monospace;
+}
