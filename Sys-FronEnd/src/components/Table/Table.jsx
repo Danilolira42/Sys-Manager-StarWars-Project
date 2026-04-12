@@ -2,6 +2,10 @@ import "../../../global-css/global.css";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
+import { MdChevronLeft } from "react-icons/md";
+import { MdChevronRight } from "react-icons/md";
+import { MdFirstPage } from "react-icons/md";
+import { MdLastPage } from "react-icons/md";
 
 function Table() {
   return (
@@ -57,6 +61,7 @@ function Table() {
         >
           <tr
             style={{
+              marginTop: "20px",
               width: "100%",
               display: "flex",
               alignContent: "center",
@@ -98,6 +103,37 @@ function Table() {
             </td>
           </tr>
         </tbody>
+
+        <tfoot
+          style={{
+            width: "100%",
+          }}
+        >
+          <tr
+            style={{
+              border: "2px solid black",
+              width: "100%",
+              display: "flex",
+              marginRight: "auto"
+            }}
+          >
+            <td colSpan={3}>
+              <MdChevronLeft
+                style={{
+                  cursor: "pointer",
+                  width: "40px",
+                }}
+              />
+
+              <MdChevronRight
+                style={{
+                  cursor: "pointer",
+                  width: "40px"
+                }}
+              />
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   );
