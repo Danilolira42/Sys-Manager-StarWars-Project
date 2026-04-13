@@ -19,8 +19,8 @@ function Home() {
       <main
         style={{
           backgroundColor: "var(--bg-card)",
-          width: "800px",
-          height: "500px",
+          width: "850px",
+          height: "600px",
           borderRadius: "var(--br)",
           overflow: "auto",
           boxShadow: "rgba(161, 161, 161, 0.1)"
@@ -49,7 +49,7 @@ function Home() {
          width: "80px",
          textAlign: "center",
          marginTop: "20px",
-         marginLeft: "30px",
+         marginLeft: "55px",
          backgroundColor: "var(--bg-card)",
          color: "var(--color-text)"
        }}>

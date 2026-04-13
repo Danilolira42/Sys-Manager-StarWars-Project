@@ -1,0 +1,6 @@
+quarkus.datasource.db-kind=mysql 
+quarkus.datasource.username=root
+quarkus.datasource.password=V7r$9pLq3!tZx8M
+
+quarkus.datasource.jdbc.url=jdbc:mysql://localhost:3306/starwarsdb
+quarkus.datasource.jdbc.max-size=16
