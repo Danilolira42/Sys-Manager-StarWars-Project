@@ -1,104 +1,130 @@
 import "../../../global-css/global.css"
 import "./styles/styles.css"
 import { Table } from "../Table/Table"
+import { useEffect, useState } from "react";
 
 function Home() {
-  return (
-    <div
-      style={{
-        backgroundColor: "var(--bg-color)",
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <main
-        style={{
-          backgroundColor: "var(--bg-card)",
-          width: "850px",
-          height: "600px",
-          borderRadius: "var(--br)",
-          overflow: "auto",
-          boxShadow: "rgba(161, 161, 161, 0.1)"
-        }}
-      >
+
+  const [imageView, setImageView] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+
+    useEffect(() => {
       
+      const setTimeIn = setTimeout(() => {
+        setImageView(true);
+      }, 6000)
+
+      const setTimeOut = setTimeout(() => {
+        setIsExiting(true);
+      }, 12000)
+
+      return (() => {
+        clearTimeout(setTimeIn);
+        clearTimeout(setTimeOut);
+      })
+    }, [])
+
+    const handleAnimationEnd = () => {
+      if(isExiting){
+      setImageView(false);
+      }
+    }
+
+  return (
+    <div className="container">
+      <main className="main">
+        
       <header style={{
          width: "100%",
          marginTop: "40px"
       }}>
         <h2
-          style={{
-            color: "var(text-color)",
-            margin: "0 auto",
-            width: "max-content",
-            textAlign: "center"
-          }}
+        className="title"
         >
           PROCURE POR UM PERSONAGEM
         </h2>
        </header>
 
-       <label htmlFor="input" style={{
-         position: "absolute",
-         fontSize: "12px",
-         width: "80px",
-         textAlign: "center",
-         marginTop: "20px",
-         marginLeft: "55px",
-         backgroundColor: "var(--bg-card)",
-         color: "var(--color-text)"
-       }}>
+       <label htmlFor="input" 
+       className="label">
          
          Personagem
        
        </label>   
 
         <nav
-          style={{
-            display: "flex",
-            alignContent: "center",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "10px",
-            marginTop: "30px",
-          }}
+        className="navigation"
         >
           <input
             type="text"
+            className="search"
             placeholder="Digite um personagem..."
-            style={{
-              border: "0.3px solid rgba(0, 0, 0, 0.35)",
-              borderRadius: "var(--br-inputs)",
-              width: "550px",
-              height: "35px",
-              outlined: "none",
-              paddingLeft: "10px"
-            }}
           >
           </input>
 
           <button
+            onClick={()=> console.log("Clicou")}
             className="btn-styles"
             type="button"
-            style={{
-              border: "none",
-              width: "200px",
-              padding: 12,
-              borderRadius: "var(--br-buttons)",
-              backgroundColor: "#FFE81F",
-              cursor: "pointer",
-            }}
           >
             PESQUISAR
           </button>
         </nav>
+
         <Table />
-      </main>
+      </main>    
+
+  {imageView && (
+  <div 
+    onAnimationEnd={handleAnimationEnd}
+    style={{
+    position: "absolute",
+    bottom: "20px",
+    left: "255px",   
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    zIndex: 1000,
+    animation: isExiting ? "slideDown 1.5s ease-in forwards" : "slideUp 1.5s ease-out forwards",
+  }}>
+    
+    <style>{`
+            @keyframes slideUp {
+              from { transform: translateY(100vh); opacity: 0; }
+              to { transform: translateY(0) rotate(30deg); opacity: 1; }
+            }
+            @keyframes slideDown {
+              from { transform: translateY(0) rotate(30deg); opacity: 1; }
+              to { transform: translateY(100vh); opacity: 0; }
+            }
+          `}
+    </style>
+
+    <div 
+    style={{
+      backgroundColor: "#fde047",
+      border: "4px solid #000",   
+      padding: "10px 20px",
+      fontFamily: '"Comic Sans MS", "Comic Sans", cursive', 
+      fontWeight: "bold",
+      textTransform: "uppercase",
+      boxShadow: "8px 8px 0px #000", 
+      display: "inline-block",
+      transform: "rotate(-2deg)",
+      maxWidth: "250px",
+      color: "#000",
+      marginBottom: "15px",
+    }}>
+      <p style={{ margin: 0, fontSize: "14px" }}>Easter egg!</p>
+    </div>
+
+    <img 
+      src="/images/darth-vader.png" 
+      alt="darth-vader"
+      style={{ width: "120px", height: "auto" }}
+    />
+  </div>
+)}
     </div>
   );
 }

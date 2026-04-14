@@ -5,6 +5,9 @@
   --color-text: rgb(53, 53, 53);
   --br-inputs: 4px;
   --br-buttons: 4px;
+  --br-inputs: 5px;
+  --secondary: #fde047;
+  --primary: #FFFFFF;
 }
 
 html,

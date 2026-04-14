@@ -1,4 +1,4 @@
-package modelsDTO;
+package application.models.characters;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

@@ -1,136 +1,60 @@
 import "../../../global-css/global.css";
+import "../Table/styles/styles.css";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { MdChevronLeft } from "react-icons/md";
 import { MdChevronRight } from "react-icons/md";
-import { MdFirstPage } from "react-icons/md";
-import { MdLastPage } from "react-icons/md";
 
 function Table() {
   return (
     <div>
-      <table
-        style={{
-          width: "100%",
-          height: "max-content",
-          marginTop: "20px",
-        }}
-      >
+      <table className="table">
         <thead>
-          <tr
-            style={{
-              width: "100%",
-              display: "flex",
-              alignContent: "center",
-              justifyItems: "center",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <th
-              style={{
-                width: "200px",
-                height: "max-content",
-              }}
-            >
-              Nome
-            </th>
-            <th
-              style={{
-                width: "200px",
-                height: "max-content",
-              }}
-            >
-              Notas
-            </th>
-            <th
-              style={{
-                width: "200px",
-                height: "max-content",
-              }}
-            >
-              Data de Criação
-            </th>
+          <tr>
+            <th colSpan={1}>Nome</th>
+            <th colSpan={2}>Notas</th>
+            <th colSpan={3}>Data de Criação</th>
+            <th colSpan={4}></th>
           </tr>
         </thead>
 
-        <tbody
-          style={{
-            height: "300px",
-          }}
-        >
-          <tr
-            style={{
-              marginTop: "20px",
-              width: "100%",
-              display: "flex",
-              alignContent: "center",
-              justifyItems: "center",
-              justifyContent: "space-evenly",
-              textAlign: "center",
-            }}
-          >
-            <td
-              style={{
-                width: "200px",
-                height: "max-content",
-              }}
-            >
-              Danilo
-              <MdEdit />
+        <tbody>
+          <tr>
+            <td colSpan={1}>
+              <div className="input-container">
+                <input className="input" type="text" value={"Danilo"} />
+                <MdEdit className="icon-edit" />
+              </div>
             </td>
-            <td
-              style={{
-                width: "200px",
-                height: "max-content",
-              }}
-            >
-              25
-              <MdEdit />
+
+            <td colSpan={2}>
+              <div className="input-container">
+                <input className="input" type="text" value={"São Paulo"} />
+                <MdEdit className="icon-edit" />
+              </div>
             </td>
-            <td
-              style={{
-                width: "200px",
-                height: "max-content",
-              }}
-            >
-              São Paulo
-              <MdEdit />
+
+            <td colSpan={3}>
+              <div className="input-container">
+                <input className="input" type="text" value={"20/11/2026"} />
+                <MdEdit className="icon-edit" />
+              </div>
             </td>
-            <td>
-              <MdFavorite />
-              <MdDelete />
+
+            <td colSpan={4} className="actions">
+              <MdFavorite className="heart-icon" fill="#ff0000" color="#000" size={20}/>
+              <MdDelete className="trash-icon" size={20}/>
             </td>
           </tr>
         </tbody>
 
-        <tfoot
-          style={{
-            width: "100%",
-          }}
-        >
-          <tr
-            style={{
-              border: "2px solid black",
-              width: "100%",
-              display: "flex",
-              marginRight: "auto"
-            }}
-          >
-            <td colSpan={3}>
-              <MdChevronLeft
-                style={{
-                  cursor: "pointer",
-                  width: "40px",
-                }}
-              />
-
-              <MdChevronRight
-                style={{
-                  cursor: "pointer",
-                  width: "40px"
-                }}
-              />
+        <tfoot>
+          <tr>
+            <td>
+              <MdChevronLeft className="pagination-icon" />
+              <p className="page-number">1</p>
+              <MdChevronRight className="pagination-icon" />
             </td>
           </tr>
         </tfoot>

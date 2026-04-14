@@ -1,7 +1,9 @@
+package resources.controllers;
+
 import java.net.URI;
 
-import Entities.CharactersEntity;
-import Entities.CharactersUpdateEntity;
+import application.models.favorites.FavoritesDTO;
+import application.services.CharactersService;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -18,7 +20,7 @@ import jakarta.ws.rs.core.Response;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 
-@Path("/characters")
+@Path("/api")
 public class CharactersController {
 
     private final CharactersService service;
@@ -28,7 +30,7 @@ public class CharactersController {
     }
 
     @GET
-    @Path("/allCharacters")
+    @Path("/favorites")
     public Response findAllCharacters(@QueryParam("page") Integer page,
             @QueryParam("pageSize") Integer pageSize) {
 
@@ -38,7 +40,7 @@ public class CharactersController {
     }
 
     @GET
-    @Path("/{Id}")
+    @Path("/favorites/{Id}")
     public Response findCharactersById(@PathParam("Id") String Id) {
 
         var characters = service.findCharactersById(Id);
@@ -47,24 +49,28 @@ public class CharactersController {
     }
 
     @POST
+    @Path("/favorites")
     @Transactional
-    public Response createCharacter(CharactersEntity character) {
-
+    public Response createCharacter(FavoritesDTO character) {
+        
+        service.createCharacter(character);
         URI location = URI.create("characters/" + character.getCharacter_id());
         return Response.created(location).entity(character).build();
     }
 
     @PUT
-    @Path("{Id}")
+    @Path("/favorites/{Id}")
     @Transactional
-    public Response updateCharacter(@PathParam("Id") String Id, CharactersUpdateEntity character) {
-        return Response.noContent().entity(character).build();
+    public Response updateCharacter(@PathParam("Id") String Id, FavoritesDTO updateCharacter) {
+        service.updateCharacter(Id, updateCharacter);
+        return Response.noContent().entity(updateCharacter).build();
     }
 
     @DELETE
-    @Path("{Id}")
+    @Path("/favorites/{Id}")
     @Transactional
     public Response deleteCharacter(@PathParam("Id") String Id) {
+        service.deleteCharacter(Id);
         return Response.noContent().build();
     }
 }

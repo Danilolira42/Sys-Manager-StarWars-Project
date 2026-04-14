@@ -1,8 +1,94 @@
+.container {
+  background-color: var(--bg-color);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
 
+.main {
+  background-color: var(--bg-card);
+  width: 850px;
+  height: 600px;
+  border-radius: var(--br);
+  box-shadow: 1px 1px 1.5px rgb(255, 255, 255);
+  overflow: hidden;
+}
+
+.title {
+  color: var(text-color);
+  margin: 0 auto;
+  width: max-content;
+  text-align: center;
+}
+
+.label {
+  position: absolute;
+  font-size: 12px;
+  width: 80px;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 55px;
+  background-color: var(--bg-card);
+  color: var(--color-text);
+}
+
+.navigation {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.search {
+  border: 0.3px solid rgba(0, 0, 0, 0.35);
+  border-radius: var(--br-inputs);
+  width: 550px;
+  height: 35px;
+  outline: none;
+  padding-left: 10px;
+  font-size: 15px;
+}
+
+.search:focus {
+  border: 0.3px solid var(--secondary);
+}
+
+.search:hover {
+  border: 0.3px solid var(--secondary);
+}
+
+.btn-styles {
+  border: none;
+  width: 200px;
+  padding: 1em;
+  border-radius: var(--br-buttons);
+  background-color: var(--secondary);
+  cursor: pointer;
+}
 
 .btn-styles:hover {
-    background-color: rgb(10, 10, 10);
+  background-color: rgba(255, 252, 85, 0.788);
 }
-.btn-styles:focus{
-    border: 2px solid white;
+
+.btn-styles:active {
+    background-color: rgba(255, 255, 255, 0.788);
+    transition: 0.4s;
 }
+
+.darth-vader {
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    opacity: 1;
+    transition: all 2s ease-out;
+}
+
+

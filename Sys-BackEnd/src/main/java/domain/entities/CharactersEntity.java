@@ -1,6 +1,8 @@
-package Entities;
-import java.time.LocalDate;
+package domain.entities;
+import java.time.OffsetDateTime;
+import java.util.UUID;
 
+import org.hibernate.annotations.JdbcTypeCode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,15 +14,15 @@ import jakarta.persistence.Table;
 public class CharactersEntity {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.UUID)
+   @JdbcTypeCode(java.sql.Types.VARCHAR)
    private String character_id;
    private String name;
    private String notes;
-   private LocalDate created_at;
+   private OffsetDateTime created_at;
 
    public CharactersEntity() {}
 
-   public String getCharacter_id() {
+    public String getCharacter_id() {
       return character_id;
    }
 
@@ -44,12 +46,12 @@ public class CharactersEntity {
       this.notes = notes;
    }
 
-   public LocalDate getCreated_at() {
+   public OffsetDateTime getCreated_at() {
       return created_at;
    }
 
-   public void setCreated_at(LocalDate created_at) {
+   public void setCreated_at(OffsetDateTime created_at) {
       this.created_at = created_at;
    }
-
 }
+
