@@ -3,8 +3,8 @@ import java.util.List;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
-import application.models.characters.CharacterDTO;
 import domain.interfaces.ExternalServiceInterface;
+import domain.models.characters.CharacterDTO;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;

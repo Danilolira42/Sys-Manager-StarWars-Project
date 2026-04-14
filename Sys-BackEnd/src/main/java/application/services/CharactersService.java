@@ -1,11 +1,11 @@
 package application.services;
 import java.util.List;
 
-import application.models.favorites.FavoritesDTO;
 import application.validators.InputValidator;
 import domain.entities.CharactersEntity;
 import domain.exceptions.exceptionsInputData.ExceptionInputData;
 import domain.exceptions.exceptionsNotFound.ExceptionNotFound;
+import domain.models.favorites.FavoritesDTO;
 import infrastructure.repositories.CharactersRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -49,7 +49,7 @@ public class CharactersService {
         if(repository.findById(character.getCharacter_id()) != null) {
             throw new ExceptionInputData("This Character already exists!");
         }
-        
+
             CharactersEntity characterEntity = new CharactersEntity();
             characterEntity.setCharacter_id(character.getCharacter_id());
             characterEntity.setName(character.getName());

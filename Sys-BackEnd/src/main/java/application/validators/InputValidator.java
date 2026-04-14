@@ -1,5 +1,5 @@
 package application.validators;
-import application.models.favorites.FavoritesDTO;
+import domain.models.favorites.FavoritesDTO;
 
 public class InputValidator {
 

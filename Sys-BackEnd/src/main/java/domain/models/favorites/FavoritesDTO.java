@@ -1,4 +1,4 @@
-package application.models.favorites;
+package domain.models.favorites;
 
 import java.time.OffsetDateTime;
 

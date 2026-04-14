@@ -1,4 +1,4 @@
-package application.models.characters;
+package domain.models.characters;
 
 import java.time.OffsetDateTime;
 

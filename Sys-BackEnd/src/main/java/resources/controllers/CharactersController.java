@@ -2,8 +2,8 @@ package resources.controllers;
 
 import java.net.URI;
 
-import application.models.favorites.FavoritesDTO;
 import application.services.CharactersService;
+import domain.models.favorites.FavoritesDTO;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
