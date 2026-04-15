@@ -29,6 +29,12 @@ public class StarsWarsController {
     }
 
     @GET
+    @Path("/page")
+    public List<CharacterDTO> getCharacterByPage(@QueryParam("page") Integer page){
+        return external.getAllCharactersByPage(page).results;
+    }
+
+    @GET
     @Path("/api/characters/search")
     public List<CharacterDTO> getCharacterByName(@QueryParam("name") String name){
         return external.getCharacterByName(name).results;

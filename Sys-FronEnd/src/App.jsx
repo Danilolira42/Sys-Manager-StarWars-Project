@@ -1,5 +1,5 @@
 import "../global-css/global.css"
-import { Home } from "./components/Home/Home"
+import { Management } from "./components/Management/Management"
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       backgroundColor: "var(--bg-color)",
       color: "var(--color-text)",
     }}>
-      <Home />
+      <Management />
     </div>
   );
 }

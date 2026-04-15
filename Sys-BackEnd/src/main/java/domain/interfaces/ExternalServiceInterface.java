@@ -15,5 +15,8 @@ public interface ExternalServiceInterface {
     CharactersDTO getAllCharacters();
 
     @GET
+    CharactersDTO getAllCharactersByPage(@QueryParam("page") Integer page);
+
+    @GET
     CharactersDTO getCharacterByName(@QueryParam("search") String name);
 }

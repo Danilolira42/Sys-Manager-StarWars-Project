@@ -1,15 +1,17 @@
 :root {
   --br: 8px;
-  --bg-color: rgba(27, 26, 26, 0.979);
+  --bg-color: rgba(39, 38, 38, 0.979);
+  --bg-input-color: rgba(46, 46, 46, 0.938);
   --bg-card: rgb(255, 255, 255);
   --color-text: rgb(53, 53, 53);
   --br-inputs: 4px;
   --br-buttons: 4px;
   --br-inputs: 5px;
+  --br-cards: 8px;
   --secondary: #fde047;
   --primary: #FFFFFF;
+  --font-family: "Roboto Mono", monospace;
 }
-
 html,
 body {
   padding: 0;

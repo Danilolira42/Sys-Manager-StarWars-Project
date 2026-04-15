@@ -1,64 +1,85 @@
-import axios from "axios";
-import { Https } from "../https/Https";
+import { Https, HttpsProxy } from "../https/Https";
 
-const character = {
-    character_Id: character_Id,
-    character_name: character_name,
-    character_notes: character_notes,
-    created_at: created_at
-}
 
-function getById(character_Id) {
+async function getById(character_Id) {
+ 
   try {
-    const response = axios.get(`${Https.BASE_URL}/favorites/${character_Id}`);
+    const response = await Https.get(`favorites/${character_Id}`);
     return response.data;
   } catch (error) {
-    console.error(error);
+    throw console.error(error);
   }
 }
 
-function getAll() {
+async function proxyGetAll(){
   try {
-    const response = axios.get(`${Https.BASE_URL}/favorites`);
+      const response = await HttpsProxy.get(`starwars`);
+      return response.data;
+  } catch (error) {
+    throw console.error(error);
+  } 
+}
+
+async function proxyGetAllPaged(page){
+  try {
+      const response = await HttpsProxy.get(`starwars/page/?page=${page}`);
+      return response.data;
+  } catch (error) {
+    throw console.error(error);
+  } 
+}
+
+
+async function getAll({page, pagesize}) {
+  try {
+    const response = await Https.get(`favorites?page=${page}&pagesize=${pagesize}`);
     return response.data;
   } catch (error) {
-    console.error(error);
+    throw console.error(error);
   }
 }
 
-
-function updateById(character) {
+async function updateById({character}) {
   try {
-    const response = axios.put(`${Https.BASE_URL}/favorites/${character_Id}`, character);
+    const response = await Https.put(`favorites/${character_Id}`, {},
+      {
+        params: {
+          name: character.name,
+          notes: character.notes
+        },
+      }
+    );
     return response.data;
   
 } catch (error) {
-    console.error(error);
+    throw console.error(error);
   }
 }
 
-function create(character) {
+async function create(character) {
   try {
-    const response = axios.create(`${Https.BASE_URL}/favorites`, character);
+    const response = await Https.post(`favorites`, character);
     return response.data;
   
 } catch (error) {
-    console.error(error);
+    throw console.error(error);
   }
 }
 
-function deleteById(character_Id) {
+async function deleteById(character_Id) {
   try {
-    const response = axios.delete(`${Https.BASE_URL}/favorites/${character_Id}`);
+    const response = await Https.delete(`favorites/${character_Id}`);
     return response.data;
   
 } catch (error) {
-    console.error(error);
+    throw console.error(error);
   }
 }
 
-export{
+export const Services = {
     getById,
+    proxyGetAll,
+    proxyGetAllPaged,
     getAll,
     updateById,
     create,

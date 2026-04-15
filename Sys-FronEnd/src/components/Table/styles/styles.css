@@ -1,5 +1,6 @@
 .table {
   width: 100%;
+  min-height: 100vh;
   height: max-content;
   margin-top: 20px;
 }
@@ -23,7 +24,7 @@
 }
 
 .table tbody {
-  height: 360px;
+  height: max-content;
 }
 
 .table tbody tr {
@@ -103,7 +104,7 @@
   font-size: 13px;
   color: var(--color-text);
 }
-
+/* 
 .pagination-icon {
   cursor: pointer;
   width: max-content;
@@ -111,8 +112,9 @@
   color: var(--secondary);
 }
 
+/* 
 .page-number {
   margin: 2px;
   padding: 0;
   box-sizing: border-box;
-}
+} */ 
