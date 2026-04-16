@@ -5,23 +5,44 @@ import { Cards } from "../Cards/Cards";
 import { Services } from "../../../services/Services";
 import { MdChevronLeft } from "react-icons/md";
 import { MdChevronRight } from "react-icons/md";
+import { useLocation, useNavigate } from "react-router-dom";
+import { MdStar } from "react-icons/md";
+import { Error } from "../Erorrs/Errors.jsx";
+import { Success } from "../Success/Success.jsx";
+import { DataNotFound } from "../DataNotFound/DataNotFound.jsx";
 
-function Management() {
+
+function Management({ favorites }) {
   const [imageView, setImageView] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [search, setSearch] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [loading, setIsLoading] = useState(false);
-  const [paginatedCharacters, setPaginatedCharacters] = useState([])
+  const [hasError, setHasError] = useState(false);
+  const [hasSuccess, setHasSuccess] = useState(false);
+  const [paginatedCharacters, setPaginatedCharacters] = useState([]);
+  const [liked, setLiked] = useState({});
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const management = location.pathname === "/ManagementPage";
+
+  function handleNavigation() {
+    navigate("/FavoritesPage");
+  }
+
+  function handleNavigationBack() {
+    navigate("/ManagementPage");
+  }
 
   async function loadCharacters(page) {
     setIsLoading(true);
-    
+
     const result = await Services.proxyGetAllPaged(page);
 
     setPaginatedCharacters(result || []);
-    
+
     setIsLoading(false);
   }
 
@@ -42,7 +63,8 @@ function Management() {
 
   useEffect(() => {
     loadCharacters(page);
-  }, [page])
+    setLiked(false);
+  }, [page]);
 
   const handleAnimationEnd = () => {
     if (isExiting) {
@@ -53,13 +75,35 @@ function Management() {
   return (
     <div className="container">
       <main className="main">
+        {!management && (
+          <div className="favorites-header">
+            <MdStar size={24} fill="gold" className="star" />
+            <p>Favoritos</p>
+          </div>
+        )}
         <header
+          className="header"
           style={{
-            width: "100%",
-            marginTop: "40px",
+            marginTop: !management ? "-15px" : "40px",
           }}
         >
-          <h2 className="title">PROCURE POR UM PERSONAGEM</h2>
+          <h2 className="title">
+            {management ? "PROCURE POR UM PERSONAGEM" : "SEUS FAVORITOS"}
+          </h2>
+
+          <button
+            type="button"
+            onClick={() => {
+              if (management) {
+                handleNavigation();
+              } else {
+                handleNavigationBack();
+              }
+            }}
+            className="btn-favorite"
+          >
+            {!management ? "PERSONAGENS" : "FAVORITOS"}
+          </button>
         </header>
 
         <nav className="navigation">
@@ -86,80 +130,74 @@ function Management() {
           </button>
         </nav>
 
-        <Cards search={searchValue} paginatedCharacters={paginatedCharacters} loading={loading} setIsLoading={setIsLoading}/>
+        {!management && favorites.length === 0 ? (
+          <DataNotFound text={"Nenhuma informação para ser exibida!"} />
+        ) : (
+          <Cards
+            search={searchValue}
+            paginatedCharacters={paginatedCharacters}
+            loading={loading}
+            setIsLoading={setIsLoading}
+            setHasError={setHasError}
+            setHasSuccess={setHasSuccess}
+            management={management}
+            favorites={favorites}
+            liked={liked}
+            setLiked={setLiked}
+          />
+        )}
 
         <footer className="footer">
           <div className="pagination-container">
             <MdChevronLeft
               className="pagination-icon"
-              onClick={() => 
-                setPage((prev) => Math.max(prev - 1, 1)
-                )}
+              onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
             />
             <p className="page-number">Página {page}</p>
             <MdChevronRight
               className="pagination-icon"
-              onClick={() =>
-                setPage((prev) => Math.min(prev + 1, 9))}
+              onClick={() => setPage((prev) => Math.min(prev + 1, 9))}
             />
           </div>
         </footer>
       </main>
 
+      {hasError && (
+        <Error
+          error={
+            management
+              ? "Clique em favoritar antes de salvar!"
+              : "Adicione uma nota antes de salvar!"
+          }
+          hasError={hasError}
+        />
+      )}
+
+      {hasSuccess && (
+        <Success
+          success={"Personagem salvo com sucesso!"}
+          hasSuccess={hasSuccess}
+        />
+      )}
+
       {imageView && (
         <div
           onAnimationEnd={handleAnimationEnd}
+          className="easter-egg"
           style={{
-            position: "absolute",
-            bottom: "20px",
-            backgroundColor: "white",
-            borderRadius: "var(--br)",
-            left: "70px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            zIndex: 1000,
             animation: isExiting
               ? "slideDown 1.5s ease-in forwards"
               : "slideUp 1.5s ease-out forwards",
           }}
         >
-          <style>
-            {`
-            @keyframes slideUp {
-              from { transform: translateY(100vh); opacity: 0; }
-              to { transform: translateY(0) rotate(30deg); opacity: 1; }
-            }
-            @keyframes slideDown {
-              from { transform: translateY(0) rotate(30deg); opacity: 1; }
-              to { transform: translateY(100vh); opacity: 0; }
-            }
-          `}
-          </style>
-
-          <div
-            style={{
-              backgroundColor: "#fde047",
-              border: "4px solid #000",
-              padding: "10px 20px",
-              fontFamily: '"Comic Sans MS", "Comic Sans", cursive',
-              fontWeight: "bold",
-              textTransform: "uppercase",
-              boxShadow: "8px 8px 0px #000",
-              display: "inline-block",
-              transform: "rotate(-2deg)",
-              maxWidth: "250px",
-              color: "#000",
-              marginBottom: "15px",
-            }}
-          >
-            <p style={{ margin: 0, fontSize: "14px" }}>Easter egg!</p>
+          <div className="easter-egg-title">
+            <p className="easter-phrase">Easter egg!</p>
           </div>
 
           <img
             src="/images/darth-vader.png"
             alt="darth-vader"
-            style={{ width: "120px", height: "auto" }}
+            className="darth-vader"
           />
         </div>
       )}

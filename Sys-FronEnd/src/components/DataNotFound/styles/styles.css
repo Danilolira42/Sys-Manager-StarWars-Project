@@ -1,0 +1,17 @@
+.data-not-found {
+    width: 70%;
+    margin: 40px auto;
+    border-radius: var(--br);
+    box-shadow: 1px 1px 0.3px rgba(0, 0, 0, 0.25);
+    background-color: var(--primary);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-not-found-title{
+    width: max-content;
+    height: 20px;
+    font-family: var(--font-family);
+}

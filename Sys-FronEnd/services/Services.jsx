@@ -30,9 +30,9 @@ async function proxyGetAllPaged(page){
 }
 
 
-async function getAll({page, pagesize}) {
+async function getAll({page, pageSize}) {
   try {
-    const response = await Https.get(`favorites?page=${page}&pagesize=${pagesize}`);
+    const response = await Https.get(`favorites/?page=${page}&pagesize=${pageSize}`);
     return response.data;
   } catch (error) {
     throw console.error(error);

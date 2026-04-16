@@ -1,0 +1,43 @@
+
+.error-wrapper{
+    padding: 10px;
+    margin-top: 535px;
+    position: fixed;
+    width: 400px;
+    background-color: rgb(226, 85, 85);
+    height: 35px;
+    display: flex;
+    box-shadow: 0px 0px 0px var(--bg-color);
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    border-radius: var(--br);
+    
+} @keyframes slideErrorUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideErrorDown {
+      from {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+}
+
+.error {
+    width: max-content;
+    color: var(--primary);
+    font-family: var(--font-family);
+    text-align: center;
+}

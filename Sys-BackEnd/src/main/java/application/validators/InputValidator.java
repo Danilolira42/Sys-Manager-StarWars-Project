@@ -14,6 +14,10 @@ public class InputValidator {
         if(character.notes == null || character.notes.isEmpty()) {
             return false;
         }
+        if(character.is_favorite == null){
+            return false;
+        }
+
         return true;
     }
 }

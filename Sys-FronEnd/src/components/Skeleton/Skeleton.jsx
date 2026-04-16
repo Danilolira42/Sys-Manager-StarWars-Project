@@ -2,6 +2,7 @@ import "./styles/styles.css";
 import { MdFavoriteBorder } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
+import { LoadSpinner } from "../Skeleton/LoadSpinner.jsx";
 
 function Skeleton() {
   return (
@@ -11,14 +12,10 @@ function Skeleton() {
             <div className="container-cards-skeleton" key={index}>
               <div className="card-skeleton">
                 <nav className="card-navigation-skeleton">
-                  <h2 className="title-card-skeleton">{"Carregando..."}</h2>
+                  <h2 className="title-card-skeleton"></h2>
                   <div className="icons-container-skeleton">
-                    <MdFavoriteBorder
-                      className="heart-icon-card-skeleton"
-                      size={20}
-                    />
-                    <MdDelete className="trash-icon-card-skeleton" size={20} />
-                  </div>
+                    <LoadSpinner /> 
+                    </div>
                 </nav>
                 <textarea
                   type="text"
@@ -26,7 +23,7 @@ function Skeleton() {
                   placeholder="Carregando..."
                 />
                 <button type="button" className="btn-card-skeleton">
-                  <MdEdit className="icon-edit-card-skeleton" /> Editar
+                   <LoadSpinner />
                 </button>
               </div>
             </div>

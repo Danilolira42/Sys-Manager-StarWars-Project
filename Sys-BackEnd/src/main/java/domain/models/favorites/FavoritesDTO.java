@@ -7,6 +7,7 @@ public String character_id;
 public String name;
 public String notes;
 public OffsetDateTime created_at;
+public Boolean is_favorite;
 
 public FavoritesDTO() {}
 
@@ -40,5 +41,13 @@ public FavoritesDTO() {}
 
    public void setCreated_at(OffsetDateTime created_at) {
       this.created_at = created_at;
+   }
+
+   public Boolean getIs_favorite() {
+      return is_favorite;
+   }
+
+   public void setIs_favorite(Boolean is_favorite) {
+      this.is_favorite = is_favorite;
    }
 }

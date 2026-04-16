@@ -55,6 +55,7 @@ public class CharactersService {
             characterEntity.setName(character.getName());
             characterEntity.setNotes(character.getNotes());
             characterEntity.setCreated_at(character.getCreated_at());
+            characterEntity.setIs_favorite(character.getIs_favorite());
 
         repository.persist(characterEntity);
         repository.flush();
@@ -67,7 +68,7 @@ public class CharactersService {
         var validate = InputValidator.validateCharacterDTO(characterUpdate);
 
         if(!validate) {
-            throw new ExceptionInputData("Name or notes cannot be empty!");
+            throw new ExceptionInputData("There are empty fields!");
         }
 
         var findCharacter = repository.findById(Id);
@@ -78,6 +79,7 @@ public class CharactersService {
 
         findCharacter.setName(characterUpdate.getName());
         findCharacter.setNotes(characterUpdate.getNotes());
+        findCharacter.setIs_favorite(characterUpdate.getIs_favorite());
 
         return findCharacter;
     }

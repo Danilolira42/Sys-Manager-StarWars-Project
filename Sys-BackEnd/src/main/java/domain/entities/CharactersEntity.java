@@ -1,11 +1,8 @@
 package domain.entities;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 import org.hibernate.annotations.JdbcTypeCode;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -19,6 +16,7 @@ public class CharactersEntity {
    private String name;
    private String notes;
    private OffsetDateTime created_at;
+   private Boolean is_favorite;
 
    public CharactersEntity() {}
 
@@ -52,6 +50,14 @@ public class CharactersEntity {
 
    public void setCreated_at(OffsetDateTime created_at) {
       this.created_at = created_at;
+   }
+
+   public Boolean getIs_favorite() {
+      return is_favorite;
+   }
+
+   public void setIs_favorite(Boolean is_favorite) {
+      this.is_favorite = is_favorite;
    }
 }
 
