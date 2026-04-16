@@ -26,7 +26,7 @@ function Favorites() {
 
   return (
     <div>
-      <Management favorites={favorites} />
+      <Management favorites={favorites} setFavorites={setFavorites}/>
     </div>
   );
 }

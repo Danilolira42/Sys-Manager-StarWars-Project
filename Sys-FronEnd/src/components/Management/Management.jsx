@@ -12,7 +12,7 @@ import { Success } from "../Success/Success.jsx";
 import { DataNotFound } from "../DataNotFound/DataNotFound.jsx";
 
 
-function Management({ favorites }) {
+function Management({ favorites, setFavorites }) {
   const [imageView, setImageView] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [search, setSearch] = useState("");
@@ -144,6 +144,7 @@ function Management({ favorites }) {
             favorites={favorites}
             liked={liked}
             setLiked={setLiked}
+            setFavorites={setFavorites}
           />
         )}
 

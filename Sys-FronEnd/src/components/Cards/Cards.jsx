@@ -19,6 +19,7 @@ function Cards({
   favorites,
   liked,
   setLiked,
+  setFavorites,
 }) {
   const [disabled, setDisabled] = useState({});
   const [onChanging, setOnChanging] = useState({});
@@ -26,16 +27,6 @@ function Cards({
   const [updateCharacters, setUpdateCharacters] = useState([]);
   const searchCharacter = search?.toLowerCase() || "";
   const ref = useRef([]);
-
-  const filteredCharacters = useMemo(() => {
-    return (paginatedCharacters || []).filter(
-      (character) =>
-        !(favorites || []).some(
-          (favorite) =>
-            favorite.name.toLowerCase() === character.name.toLowerCase(),
-        ),
-    );
-  }, [paginatedCharacters, favorites]);
 
   async function createFavorites(character) {
     setIsLoading(true);
@@ -70,7 +61,6 @@ function Cards({
           ),
       ),
     );
-    setLiked({});
   }, [paginatedCharacters, favorites]);
 
   return (
@@ -78,7 +68,7 @@ function Cards({
       {loading ? (
         <Skeleton />
       ) : (
-        (management ? filteredCharacters : favorites || [])
+        (management ? updateCharacters : favorites || [])
           .filter((character) =>
             character?.name?.toLowerCase().includes(searchCharacter),
           )
@@ -163,7 +153,14 @@ function Cards({
                             ...prev,
                             [index]: false,
                           }));
-
+                          setUpdateCharacters((prev) =>
+                            prev.filter(
+                              (c) =>
+                                c.name.toLowerCase() !==
+                                character.name.toLowerCase(),
+                            ),
+                          );
+                          setLiked((prev) => ({ ...prev, [index]: false }))
                           await createFavorites(createCharacter);
                         }}
                       >
