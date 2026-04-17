@@ -35,7 +35,7 @@ public class StarsWarsController {
     }
 
     @GET
-    @Path("/api/characters/search")
+    @Path("/characters/search")
     public List<CharacterDTO> getCharacterByName(@QueryParam("name") String name){
         return external.getCharacterByName(name).results;
     }
