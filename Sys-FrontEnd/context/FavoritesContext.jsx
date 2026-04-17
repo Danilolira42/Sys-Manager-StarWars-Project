@@ -82,7 +82,7 @@ export function FavoritesProvider({ children }) {
   }, [page, pageSize]);
 
   useEffect(() => {
-    loadCharactersFavorites();
+    loadCharactersFavorites({page, pageSize});
   }, [location.pathname]);
 
   return (
