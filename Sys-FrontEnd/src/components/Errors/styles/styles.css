@@ -3,7 +3,7 @@
     padding: 10px;
     margin-top: 533px;
     position: fixed;
-    width: 500px;
+    width: max-content;
     background-color: rgb(226, 85, 85);
     height: 35px;
     display: flex;

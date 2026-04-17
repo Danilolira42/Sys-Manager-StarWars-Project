@@ -19,6 +19,7 @@ function Management() {
   const [hasError, setHasError] = useState(false);
   const [hasSuccess, setHasSuccess] = useState(false);
   const [liked, setLiked] = useState({});
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const { favorites, getCharacterById, page, setPage, pageSize, loading } =
@@ -31,6 +32,18 @@ function Management() {
     getByName,
   } = useProxy();
 
+    function errorTimeOut() {
+    setTimeout(() => {
+      setHasError(false);
+    }, 3000);
+  }
+
+  function successTimeOut() {
+    setTimeout(() => {
+      setHasSuccess(false);
+    }, 3000);
+  }
+
   async function handleFilterCharacter(name) {
     await getByName(name);
   }
@@ -42,8 +55,6 @@ function Management() {
       console.log("Character not found!")
       return;
     }
-
-    console.log(character)
     await getCharacterById(character.character_id);
   }
 
@@ -155,6 +166,9 @@ function Management() {
             setLiked={setLiked}
             page={page}
             pageSize={pageSize}
+            setMessage={setMessage}
+            errorTimeOut={errorTimeOut}
+            successTimeOut={successTimeOut}
           />
         )}
 
@@ -189,7 +203,7 @@ function Management() {
         <Error
           error={
             management
-              ? "Clique em favoritar antes de salvar!"
+              ? "Clique em favoritar e adicione uma nota antes de salvar!"
               : "Adicione uma nota antes de salvar!"
           }
           hasError={hasError}
@@ -198,7 +212,7 @@ function Management() {
 
       {hasSuccess && (
         <Success
-          success={"Personagem salvo com sucesso!"}
+          success={message}
           hasSuccess={hasSuccess}
         />
       )}

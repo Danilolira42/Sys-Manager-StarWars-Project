@@ -16,6 +16,9 @@ function Cards({
   liked,
   setLiked,
   loading,
+  setMessage,
+  errorTimeOut,
+  successTimeOut,
 }) {
   const [disabled, setDisabled] = useState({});
   const [onChanging, setOnChanging] = useState({});
@@ -26,30 +29,25 @@ function Cards({
     useFavorites();
   const [isSaving, setIsSaving] = useState(false);
 
-  function errorTimeOut() {
-    setTimeout(() => {
-      setHasError(false);
-    }, 3000);
-  }
-
-  function successTimeOut() {
-    setTimeout(() => {
-      setHasSuccess(false);
-    }, 3000);
-  }
-
   async function handleCreateCharacters(character) {
     await createFavorites(character);
     setHasSuccess(true);
+    setMessage("Personagem favoritado com sucesso!");
     successTimeOut();
   }
 
   async function handleUpdateInformation(updateCharacter) {
     await updateFavoriteCharacter(updateCharacter);
+    setHasSuccess(true);
+    setMessage("Personagem atualizado com sucesso!");
+    successTimeOut();
   }
 
   async function handleDeleteFavorite(character_id) {
     await deleteCharacter(character_id);
+    setHasSuccess(true);
+    setMessage("Personagem deletado com sucesso!");
+    successTimeOut();
   }
 
   const updateCharacters = useMemo(() => {
